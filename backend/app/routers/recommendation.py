@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, status
-from pydantic import ValidationError
 from .. import schemas
 
 router = APIRouter(
@@ -14,4 +13,4 @@ def create_recommendations(media: schemas.Media):
     if not response:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Generate response failed")
 
-    return {"text": "success"}
+    return {"text": "generated"}
