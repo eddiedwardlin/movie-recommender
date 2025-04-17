@@ -1,0 +1,3 @@
+Given this information about me: {about}
+
+Should I watch this movie/tv show: {name}

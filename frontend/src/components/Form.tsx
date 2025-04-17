@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../api";
+import MuiMarkdown from 'mui-markdown'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -59,7 +60,8 @@ function Form({title}: Props) {
                     }}
                 >
                     <Typography variant="h6" gutterBottom>Recommendation</Typography>
-                    <Typography variant="body1" whiteSpace="pre-line">{response}</Typography>
+                    {/* <Typography variant="body1" whiteSpace="pre-line">{response}</Typography> */}
+                    <MuiMarkdown>{response}</MuiMarkdown>
                 </Box>
             )}
         </Box>
