@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api";
-import MuiMarkdown from 'mui-markdown'
+import ReactMarkdown from 'react-markdown'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -24,7 +24,7 @@ function Form({title}: Props) {
         try {
             const res = await api.post("/recommendations/", {
                 name: name,
-                about: about,
+                preferences: about,
             });
 
             setResponse(res.data.text);
@@ -56,12 +56,13 @@ function Form({title}: Props) {
                         mt: 3,
                         p: 2,
                         borderRadius: 2,
-                        backgroundColor: 'grey.100',
+                        backgroundColor: 'grey.800',
                     }}
                 >
                     <Typography variant="h6" gutterBottom>Recommendation</Typography>
-                    {/* <Typography variant="body1" whiteSpace="pre-line">{response}</Typography> */}
-                    <MuiMarkdown>{response}</MuiMarkdown>
+                    <Box sx={{ fontFamily: 'Roboto', lineHeight: 1.5 }}>
+                        <ReactMarkdown>{response}</ReactMarkdown>
+                    </Box>
                 </Box>
             )}
         </Box>

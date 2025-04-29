@@ -7,14 +7,13 @@ router = APIRouter(
     tags=["Recommendations"]
 )
 
+# Get recommendation given movie name and preference description
 @router.post("/", status_code=status.HTTP_200_OK, response_model=schemas.RecommendationResponse)
 def create_recommendations(media: schemas.Media):
     # Generate response using LLM
-    response = get_response("test_prompt.txt", name=media.name, about=media.about)
+    response = get_response("prompt_1.txt", name=media.name, about=media.preferences)
 
     if not response:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Generate response failed")
-    
-    print(response)
 
     return {"text": response}
