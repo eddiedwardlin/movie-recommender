@@ -8,6 +8,7 @@ load_dotenv()
 
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
+# Get a response from Gemini using the prompt in the file
 def get_response(prompt_file, **kwargs):
     client = genai.Client(api_key=GEMINI_API_KEY)
     model_id = "gemini-2.0-flash"
