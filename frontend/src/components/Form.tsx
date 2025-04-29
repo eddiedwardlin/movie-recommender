@@ -13,7 +13,7 @@ interface Props {
 
 function Form({title}: Props) {
     const [name, setName] = useState("");
-    const [about, setAbout] = useState("");
+    const [preferences, setPreferences] = useState("");
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ function Form({title}: Props) {
         try {
             const res = await api.post("/recommendations/", {
                 name: name,
-                preferences: about,
+                preferences: preferences,
             });
 
             setResponse(res.data.text);
@@ -47,7 +47,7 @@ function Form({title}: Props) {
           }}>
             <Typography variant="h4">{title}</Typography>
             <TextField id="name-field" label="Movie/TV Show" variant="outlined" value={name} onChange={(e) => setName(e.target.value)}/>
-            <TextField id="about-field" label="Tell Me About Your Preferences" variant="outlined" multiline rows={5} value={about} onChange={(e) => setAbout(e.target.value)}/>
+            <TextField id="preferences-field" label="Tell Me About Your Preferences" variant="outlined" multiline rows={5} value={preferences} onChange={(e) => setPreferences(e.target.value)}/>
             <Button type="submit" variant="contained" color="secondary">Generate</Button>
             {loading && <LinearProgress color="secondary"/>}
             {response && (
