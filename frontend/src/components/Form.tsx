@@ -17,7 +17,7 @@ function Form({title}: Props) {
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // Axios code
+    // Axios code (intentionally kept)
     // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     //     setLoading(true);
     //     e.preventDefault();
