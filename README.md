@@ -1,7 +1,5 @@
 # movie-recommender
 
-This a webapp that takes in a query and presents a list of potential images. Users can then like and dislike images that suit their design taste.
-
 ### Instructions
 1. Create and activate virtual environment
     - Run `python3 -m venv env` 
