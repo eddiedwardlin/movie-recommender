@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api";
+// import api from "../api";
 import ReactMarkdown from 'react-markdown'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -17,17 +17,50 @@ function Form({title}: Props) {
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // Axios code
+    // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    //     setLoading(true);
+    //     e.preventDefault();
+
+    //     try {
+    //         const res = await api.post("/recommendations/", {
+    //             name: name,
+    //             preferences: preferences,
+    //         });
+
+    //         setResponse(res.data.text);
+    //     } catch (err) {
+    //         alert(err);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setLoading(true);
         e.preventDefault();
 
         try {
-            const res = await api.post("/recommendations/", {
-                name: name,
-                preferences: preferences,
+            const res = await fetch(import.meta.env.VITE_API_URL + "/recommendations/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: name,
+                    preferences: preferences,
+                }),
             });
 
-            setResponse(res.data.text);
+            if(!res.ok) {
+                throw new Error("Error: " + res.status);
+            }
+
+            const data = await res.json();
+
+            console.log(data)
+
+            setResponse(data.text);
         } catch (err) {
             alert(err);
         } finally {
@@ -56,7 +89,7 @@ function Form({title}: Props) {
                         mt: 3,
                         p: 2,
                         borderRadius: 2,
-                        backgroundColor: 'grey.800',
+                        backgroundColor: 'grey.900',
                     }}
                 >
                     <Typography variant="h6" gutterBottom>Recommendation</Typography>
