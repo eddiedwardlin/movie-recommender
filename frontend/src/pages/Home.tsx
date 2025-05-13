@@ -3,7 +3,7 @@ import "../styles/Home.css"
 
 function Home() {
     return (
-        <Form title="Should You Watch This?"/>
+        <Form title="Should You Watch This?" url="/recommendations/"/>
     );
 }
 

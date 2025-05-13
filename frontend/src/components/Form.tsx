@@ -9,9 +9,10 @@ import LinearProgress from "@mui/material/LinearProgress";
 
 interface Props {
     title: string;
+    url: string;
 };
 
-function Form({title}: Props) {
+function Form({title, url}: Props) {
     const [name, setName] = useState("");
     const [preferences, setPreferences] = useState("");
     const [response, setResponse] = useState("");
@@ -41,7 +42,7 @@ function Form({title}: Props) {
         e.preventDefault();
 
         try {
-            const res = await fetch(import.meta.env.VITE_API_URL + "/recommendations/", {
+            const res = await fetch(import.meta.env.VITE_API_URL + url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
